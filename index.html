@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOVIE FINDER</title>
+    <style>
+        body {
+    background-color: cornsilk;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+input {
+    height: 40px;
+    border-radius: 8px;
+    border: 2px solid rgb(121, 180, 121);
+}
+
+.btn{
+    height: 47px;
+    padding: 5px 10px;
+    background-color: #2c366c;
+    color: white;
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0px 2px 3px  #120f0f;
+}
+
+.plot{
+    width: 40px;
+}
+.card.m-info{
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+}
+
+.m-info{
+    padding: 10px 0px;
+}
+
+.img{
+    margin-top: 25px;
+    border: 2px solid;
+    border-radius: 8px;
+}
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Movie Finder Using Python</h1>
+
+        <div class="search box">
+            <form action="" method="post">
+                <input type="text" name="movie_name" placeholder="Enter your movie name">
+                <button type="submit">Search Movie</button>
+            </form>
+        </div>
+
+        {% if error %}
+        <div class="error">{{ error }}</div>
+        {% endif %}
+
+        {% if movie %}
+        <div class="card">
+
+            <div class="poster">
+                {% if movie.Poster != "N/A" %}
+                    <img src="{{ movie.Poster}}" alt="{{ movie.Title }}">
+                {% else %}
+                    <img src="https://via.placeholder.com/200x300?text=Nothing" alt="nothing">
+                {% endif %}
+            </div>
+
+
+            <div class="m-info">
+                <h2>{{ movie.Title }}</h2>
+
+                <div class="rating"><strong>Year: </strong>{{ movie.Year }}</div>
+                <div class="rating"><strong>Genre: </strong>{{ movie.Genre }}</div>
+                <div class="rating"><strong>Directed By: </strong>{{ movie.Director }}</div>
+                <div class="rating"><strong>Actors: </strong>{{ movie.Actors }}</div>
+                <div class="plot"><strong>Plot: </strong>{{ movie.Plot }}</div>
+                <div class="rating"><strong>Runtime: </strong>{{ movie.Runtime }}</div>
+            </div>
+
+        </div>
+        {% endif %}
+
+    </div>
+
+</body>
+
+</html>
